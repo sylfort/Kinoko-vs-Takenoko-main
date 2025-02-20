@@ -1,0 +1,21 @@
+// {
+//     "name": "My Image Recognition App",
+//     "dockerComposeFile": "../docker-compose.yml",
+//     "service": "app", // Connect to the Flask service by default
+//     "workspaceFolder": "/app",
+//     "forwardPorts": [80], // Forward port 80 (Nginx)
+//     "portsAttributes": {
+//       "80": {
+//         "label": "Web Application",
+//         "onAutoForward": "openBrowser"
+//       }
+//     },
+//     "postCreateCommand": "echo 'Development container started!'",
+//       "customizations": {
+//       "vscode": {
+//         "extensions": [
+//           "ms-python.python"
+//         ]
+//       }
+//     }
+//   }

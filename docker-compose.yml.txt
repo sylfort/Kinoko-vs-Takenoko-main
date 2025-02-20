@@ -1,0 +1,30 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks:
+      - app-network
+    volumes:
+      - ./app/static:/app/static  # Mount static files from host
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf  # Mount nginx config from host
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.flask
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - .:/app
+      - ./app/static:/app/static  # Mount static files from host
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
