@@ -1,0 +1,13 @@
+#sudo vi /etc/systemd/system/uwsgi-img-recog.socket
+
+[Unit]
+Description=uWSGI socket for image recognition app
+
+[Socket]
+ListenStream=/run/uwsgi-img-recog.sock
+SocketUser=ec2-user
+SocketGroup=nginx
+SocketMode=0660
+
+[Install]
+WantedBy=sockets.target

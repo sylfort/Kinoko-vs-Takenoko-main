@@ -1,0 +1,40 @@
+#sudo vi /etc/systemd/system/uwsgi-img-recog.service
+
+[Unit]
+Description=uWSGI daemon for serving my-image-recognition app
+Requires=uwsgi-img-recog.socket
+After=network.target
+
+[Service]
+Type=notify
+User=ec2-user
+Group=nginx
+
+# Memory limits
+MemoryHigh=256M
+MemoryMax=512M
+LimitNOFILE=1024
+
+# Runtime settings
+WorkingDirectory=/home/ec2-user/my-image-recognition-app
+Environment="PATH=/home/ec2-user/my-image-recognition-app/venv/bin"
+Environment="PYTHONUNBUFFERED=1"
+Environment="PYTHONMALLOC=malloc"
+
+# Start command
+ExecStart=/home/ec2-user/my-image-recognition-app/venv/bin/uwsgi --ini /home/ec2-user/my-image-recognition-app/uwsgi.ini
+
+# Process management
+KillSignal=SIGQUIT
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=5
+
+# Security enhancements
+PrivateTmp=true
+ProtectSystem=strict
+NoNewPrivileges=true
+PrivateDevices=true
+
+[Install]
+WantedBy=multi-user.target
