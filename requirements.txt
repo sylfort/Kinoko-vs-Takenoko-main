@@ -2,5 +2,5 @@
 flask
 flask-cors
 ultralytics
-Pillow
-gunicorn
+opencv-python-headless==4.8.1.78
+opencv-contrib-python==4.8.1.78
