@@ -1,0 +1,3 @@
+sudo yum groupinstall "Development Tools"
+sudo yum install python-devel
+pip install uwsgi

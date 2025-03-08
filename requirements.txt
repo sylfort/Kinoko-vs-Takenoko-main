@@ -1,0 +1,6 @@
+# requirements.txt
+flask
+flask-cors
+ultralytics
+Pillow
+gunicorn
